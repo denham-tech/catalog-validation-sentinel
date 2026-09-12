@@ -1,0 +1,26 @@
+{
+  "validation_timestamp": "2026-09-12T10:41:04.643282+00:00",
+  "records_evaluated": 6,
+  "hygiene_score_pct": 75.0,
+  "status": "FLAGGED",
+  "active_violations": [
+    {
+      "rule": "UNIQUE_VARIANT_ID",
+      "severity": "CRITICAL",
+      "failed_count": 2,
+      "details": "Detected 2 conflicting duplicate variant records."
+    },
+    {
+      "rule": "POSITIVE_PRICE_FLOOR",
+      "severity": "HIGH",
+      "failed_count": 2,
+      "details": "Found 2 SKUs with non-positive or null values."
+    },
+    {
+      "rule": "SKU_PRESENCE",
+      "severity": "MEDIUM",
+      "failed_count": 1,
+      "details": "1 records are missing structured SKU identifiers."
+    }
+  ]
+}
