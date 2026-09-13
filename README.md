@@ -1,13 +1,16 @@
-# Autonomous Catalog Schema & Data Quality Sentinel
+# Catalog Validation Sentinel
 
-Enterprise-grade data quality assertion engine engineered in **Python** and **Pandas**. Executes deterministic schema validation, duplicate variant detection, price boundary enforcement, and hygiene scoring prior to downstream warehouse ingestion.
+CLI-based data quality assertion tool for e-commerce catalog ingestion pipelines. 
+Validates schema conformity, isolates primary key collisions, flags pricing anomalies, and computes a dataset hygiene score prior to warehouse insertion.
 
-## Validation Assertions
-- **Variant ID Uniqueness:** Isolates duplicated primary keys across dynamic catalog crawls.
-- **Price Boundary Checks:** Intercepts null values, zero prices, and negative pricing errors.
-- **SKU Schema Presence:** Identifies missing or malformed variant SKUs.
-- **Automated Hygiene Scoring:** Calculates a weighted composite reliability index (0–100%) and triggers automated pipeline flags when quality drops below operational thresholds.
+## Features
+- **Deterministic Schema Validation:** Enforces presence and typing of required storefront fields (`variant_id`, `sku`, `price`, `available`).
+- **Anomaly Interception:** Flags empty strings, duplicated variant IDs, null attributes, and non-positive prices.
+- **Configurable Hygiene Scoring:** Computes a normalized quality metric (0.0 to 1.0) and returns system exit code `1` when thresholds are breached.
+- **Pipeline Ready:** Accepts CSV/JSON feeds and outputs JSON diagnostic reports for downstream orchestrators.
 
-## Architecture
-- `schema_validator.py` - Core assertion logic and audit engine.
-- `validation_report.json` - Timestamped JSON diagnostic deliverable for downstream ingestion gates (untracked).
+## Usage
+
+```bash
+# Validate an extracted catalog crawl
+python schema_validator.py --input data/sample_crawl.csv --output audit_report.json --threshold 0.90

@@ -1,0 +1,13 @@
+{
+  "total_records": 5,
+  "total_defects": 3,
+  "hygiene_score": 0.88,
+  "status": "FLAGGED",
+  "breakdown": {
+    "missing_fields": [],
+    "duplicate_variants": 1,
+    "invalid_skus": 0,
+    "non_positive_prices": 1,
+    "null_values": 1
+  }
+}
